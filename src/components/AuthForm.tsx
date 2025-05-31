@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { useAuthStore } from "@/store/AuthStore";
 import { useState } from "react";
 import { LogIn, UserPlus, Calculator } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export interface AuthFormData {
   email: string;
@@ -82,38 +83,41 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Calculator className="h-8 w-8 text-teal-600" />
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-teal-600 bg-clip-text text-transparent">
+            <Calculator className="h-8 w-8 text-primary" />
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-teal-600 dark:from-purple-400 dark:via-pink-400 dark:to-teal-400 bg-clip-text text-transparent">
               CalorieTracker
             </h1>
           </div>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {isRegisterMode
               ? "Start your health journey today"
               : "Welcome back to your health journey"}
           </p>
         </div>
 
-        <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
+        <Card className="border-0 shadow-2xl bg-card/80 backdrop-blur-sm">
           <CardHeader className="space-y-1 pb-6">
+            <div className="flex justify-end">
+              <ThemeToggle />
+            </div>
             <CardTitle className="text-2xl font-bold text-center flex items-center justify-center space-x-2">
               {isRegisterMode ? (
                 <>
-                  <UserPlus className="h-6 w-6 text-teal-600" />
+                  <UserPlus className="h-6 w-6 text-primary" />
                   <span>Create Account</span>
                 </>
               ) : (
                 <>
-                  <LogIn className="h-6 w-6 text-teal-600" />
+                  <LogIn className="h-6 w-6 text-primary" />
                   <span>Sign In</span>
                 </>
               )}
             </CardTitle>
-            <CardDescription className="text-center">
+            <CardDescription className="text-center text-muted-foreground">
               {isRegisterMode
                 ? "Enter your information to create your account"
                 : "Enter your credentials to access your account"}
@@ -124,7 +128,9 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
               {isRegisterMode && (
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName">First Name</Label>
+                    <Label htmlFor="firstName" className="text-foreground">
+                      First Name
+                    </Label>
                     <Input
                       {...register("firstName", {
                         required: mode === "register",
@@ -134,13 +140,13 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
                       type="text"
                       placeholder="John"
                       disabled={isLoading}
-                      className="border-purple-200 focus:border-teal-500 focus:ring-teal-500"
+                      className="bg-background"
                       required
                       data-testid="first-name-input"
                     />
                     {errors.firstName && (
                       <p
-                        className="text-sm text-red-500"
+                        className="text-sm text-destructive"
                         data-testid="first-name-error"
                       >
                         First name is required
@@ -148,7 +154,9 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
                     )}
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName">Last Name</Label>
+                    <Label htmlFor="lastName" className="text-foreground">
+                      Last Name
+                    </Label>
                     <Input
                       id="lastName"
                       type="text"
@@ -158,13 +166,13 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
                         onChange: () => trigger("lastName"),
                       })}
                       disabled={isLoading}
-                      className="border-purple-200 focus:border-teal-500 focus:ring-teal-500"
+                      className="bg-background"
                       required
                       data-testid="last-name-input"
                     />
                     {errors.lastName && (
                       <p
-                        className="text-sm text-red-500"
+                        className="text-sm text-destructive"
                         data-testid="last-name-error"
                       >
                         Last name is required
@@ -175,7 +183,9 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-foreground">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -186,12 +196,15 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
                     onChange: () => trigger("email"),
                   })}
                   disabled={isLoading}
-                  className="border-purple-200 focus:border-teal-500 focus:ring-teal-500"
+                  className="bg-background"
                   required
                   data-testid="email-input"
                 />
                 {errors.email && (
-                  <p className="text-sm text-red-500" data-testid="email-error">
+                  <p
+                    className="text-sm text-destructive"
+                    data-testid="email-error"
+                  >
                     {errors.email.type === "required"
                       ? "Email is required"
                       : "Invalid email address"}
@@ -200,7 +213,9 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-foreground">
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
@@ -211,13 +226,13 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
                     onChange: () => trigger("password"),
                   })}
                   disabled={isLoading}
-                  className="border-purple-200 focus:border-teal-500 focus:ring-teal-500"
+                  className="bg-background"
                   required
                   data-testid="password-input"
                 />
                 {errors.password && (
                   <p
-                    className="text-sm text-red-500"
+                    className="text-sm text-destructive"
                     data-testid="password-error"
                   >
                     {errors.password.type === "required"
@@ -229,7 +244,9 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
 
               {isRegisterMode && (
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword" className="text-foreground">
+                    Confirm Password
+                  </Label>
                   <Input
                     id="confirmPassword"
                     type="password"
@@ -239,13 +256,13 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
                       onChange: () => trigger("confirmPassword"),
                     })}
                     disabled={isLoading}
-                    className="border-purple-200 focus:border-teal-500 focus:ring-teal-500"
+                    className="bg-background"
                     required
                     data-testid="confirm-password-input"
                   />
                   {errors.confirmPassword && (
                     <p
-                      className="text-sm text-red-500"
+                      className="text-sm text-destructive"
                       data-testid="confirm-password-error"
                     >
                       {errors.confirmPassword.message ||
@@ -257,7 +274,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
 
               {error && (
                 <div
-                  className="text-sm text-red-500 text-center"
+                  className="text-sm text-destructive text-center"
                   data-testid="form-error"
                 >
                   {error}
@@ -266,7 +283,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 px-4 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 dark:from-purple-500 dark:to-pink-500 dark:hover:from-purple-600 dark:hover:to-pink-600 text-white font-semibold py-2 px-4 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl"
                 disabled={isLoading}
                 data-testid="submit-button"
               >
@@ -286,25 +303,25 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-muted-foreground">
                 {isRegisterMode ? (
                   <>
                     Already have an account?{" "}
                     <button
                       type="button"
                       onClick={() => router.push("/login")}
-                      className="text-teal-600 hover:text-teal-700 font-medium underline underline-offset-4 transition-colors"
+                      className="text-primary hover:text-primary/80 font-medium underline underline-offset-4 transition-colors"
                     >
                       Sign in here
                     </button>
                   </>
                 ) : (
                   <>
-                    Dont have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <button
                       type="button"
                       onClick={() => router.push("/register")}
-                      className="text-teal-600 hover:text-teal-700 font-medium underline underline-offset-4 transition-colors"
+                      className="text-primary hover:text-primary/80 font-medium underline underline-offset-4 transition-colors"
                     >
                       Create one here
                     </button>

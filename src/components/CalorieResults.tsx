@@ -1,13 +1,7 @@
 "use client";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Utensils, Hash, Zap, Database, CheckCircle } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Utensils, Hash, Calculator, Flame, Database } from "lucide-react";
+import { Label } from "@/components/ui/label";
 
 export interface CalorieResultsProps {
   data: {
@@ -22,77 +16,57 @@ export interface CalorieResultsProps {
 
 export const CalorieResults = ({ data }: CalorieResultsProps) => {
   return (
-    <Card className="border-0 h-full shadow-xl bg-gradient-to-br from-purple-50 to-pink-50 animate-fade-in">
+    <Card className="border-0 shadow-2xl bg-card/80 backdrop-blur-sm">
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center space-x-2">
-            <CheckCircle className="h-5 w-5 text-teal-600" />
-            <span>Calorie Results</span>
-          </CardTitle>
-          <Badge variant="secondary" className="bg-teal-100 text-teal-700">
-            Success
-          </Badge>
-        </div>
-        <CardDescription>Nutritional information for your meal</CardDescription>
+        <CardTitle className="flex items-center space-x-2">
+          <Calculator className="h-5 w-5 text-primary" />
+          <span>Calorie Results</span>
+        </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Utensils className="h-4 w-4" />
-              <span>Dish Name</span>
-            </div>
-            <p className="text-lg font-semibold capitalize">
-              {data?.dish_name}
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Hash className="h-4 w-4" />
-              <span>Servings</span>
-            </div>
-            <p className="text-lg font-semibold">{data?.servings}</p>
-          </div>
-        </div>
-
-        <div className="bg-white/60 rounded-lg p-4 space-y-4">
+      <CardContent>
+        <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 mb-1">
-                <Zap className="h-4 w-4" />
-                <span>Per Serving</span>
+            <div className="space-y-2">
+              <Label className="text-sm text-muted-foreground">Dish Name</Label>
+              <div className="flex items-center space-x-2">
+                <Utensils className="h-4 w-4 text-muted-foreground" />
+                <span className="font-medium">{data.dish_name}</span>
               </div>
-              <p className="text-2xl font-bold text-purple-600">
-                {data?.calories_per_serving}
-                <span className="text-sm font-normal text-gray-500 ml-1">
-                  cal
-                </span>
-              </p>
             </div>
-
-            <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 mb-1">
-                <Zap className="h-4 w-4" />
-                <span>Total Calories</span>
+            <div className="space-y-2">
+              <Label className="text-sm text-muted-foreground">Servings</Label>
+              <div className="flex items-center space-x-2">
+                <Hash className="h-4 w-4 text-muted-foreground" />
+                <span className="font-medium">{data.servings}</span>
               </div>
-              <p className="text-3xl font-bold text-teal-600">
-                {data?.total_calories}
-                <span className="text-sm font-normal text-gray-500 ml-1">
-                  cal
-                </span>
-              </p>
             </div>
           </div>
 
-          {data?.servings > 1 && (
-            <div className="text-center text-sm text-gray-600 pt-2 border-t border-gray-200">
-              {data?.calories_per_serving} × {data?.servings} ={" "}
-              {data?.total_calories} calories
-            </div>
-          )}
-        </div>
+          <div className="h-px bg-border" />
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Label className="text-sm text-muted-foreground">
+                Total Calories
+              </Label>
+              <div className="flex items-center space-x-2">
+                <Flame className="h-4 w-4 text-primary" />
+                <span className="font-medium">{data.total_calories} kcal</span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label className="text-sm text-muted-foreground">
+                Calories per Serving
+              </Label>
+              <div className="flex items-center space-x-2">
+                <Calculator className="h-4 w-4 text-primary" />
+                <span className="font-medium">
+                  {data.calories_per_serving} kcal
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="flex items-center justify-between text-sm text-gray-600 pt-2 border-t border-gray-200">
           <div className="flex items-center space-x-2">
             <Database className="h-4 w-4" />

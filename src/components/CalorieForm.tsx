@@ -86,10 +86,10 @@ export const CalorieForm = ({ onResult }: CalorieFormProps) => {
   ];
 
   return (
-    <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+    <Card className="border-0 shadow-2xl bg-card/80 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
-          <Search className="h-5 w-5 text-green-600" />
+          <Search className="h-5 w-5 text-primary" />
           <span>Calorie Calculator</span>
         </CardTitle>
         <CardDescription>
@@ -101,13 +101,13 @@ export const CalorieForm = ({ onResult }: CalorieFormProps) => {
           <div className="space-y-2">
             <Label htmlFor="dishName">Dish Name</Label>
             <div className="relative">
-              <Utensils className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Utensils className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="dishName"
                 type="text"
                 placeholder="e.g., Chicken Biryani"
                 {...register("dish_name", { required: true })}
-                className="pl-10"
+                className="pl-10 bg-background"
                 required
               />
             </div>
@@ -116,7 +116,7 @@ export const CalorieForm = ({ onResult }: CalorieFormProps) => {
           <div className="space-y-2">
             <Label htmlFor="servings">Number of Servings</Label>
             <div className="relative">
-              <Hash className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <Hash className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 id="servings"
                 type="number"
@@ -124,17 +124,13 @@ export const CalorieForm = ({ onResult }: CalorieFormProps) => {
                 step="0.1"
                 placeholder="1"
                 {...register("servings", { required: true })}
-                className="pl-10"
+                className="pl-10 bg-background"
                 required
               />
             </div>
           </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? (
               <>
                 <Loader className="mr-2 h-4 w-4 animate-spin" />
@@ -150,7 +146,7 @@ export const CalorieForm = ({ onResult }: CalorieFormProps) => {
         </form>
 
         <div className="mt-6">
-          <Label className="text-sm text-gray-600 mb-2 block">
+          <Label className="text-sm text-muted-foreground mb-2 block">
             Popular dishes to try:
           </Label>
           <div className="flex flex-wrap gap-2">
@@ -160,7 +156,7 @@ export const CalorieForm = ({ onResult }: CalorieFormProps) => {
                 variant="outline"
                 size="sm"
                 onClick={() => setValue("dish_name", dish)}
-                className="text-xs hover:bg-green-50 hover:border-green-300"
+                className="text-xs hover:bg-accent"
               >
                 {dish}
               </Button>
