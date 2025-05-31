@@ -2,9 +2,9 @@
 
 A modern web application for tracking your daily nutrition and managing your health goals. Built with Next.js, TypeScript, and Tailwind CSS.
 
-![CalorieTracker Dashboard](screenshots/dashboard.png)
-![CalorieTracker Login](screenshots/login.png)
 ![CalorieTracker Register](screenshots/register.png)
+![CalorieTracker Login](screenshots/login.png)
+![CalorieTracker Dashboard](screenshots/dashboard.png)
 
 ## Features
 
