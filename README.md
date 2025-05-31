@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CalorieTracker
+
+A modern web application for tracking your daily nutrition and managing your health goals. Built with Next.js, TypeScript, and Tailwind CSS.
+
+![CalorieTracker Dashboard](screenshots/dashboard.png)
+![CalorieTracker Login](screenshots/login.png)
+![CalorieTracker Register](screenshots/register.png)
+
+## Features
+
+- 🔐 **Authentication**
+
+  - Secure user registration and login
+  - Protected routes with authentication guard
+  - Persistent session management
+
+- 🧮 **Calorie Calculator**
+
+  - Search for any food item or dish
+  - Calculate calories per serving
+  - Support for multiple servings
+  - Quick access to popular dishes
+
+- 📊 **Nutritional Information**
+
+  - Detailed calorie breakdown
+  - Per serving and total calories
+  - Data source attribution
+  - Timestamp tracking
+
+- 📱 **Responsive Design**
+
+  - Mobile-first approach
+  - Beautiful UI on all devices
+  - Intuitive navigation
+  - Dark/Light mode support
+
+- 🔄 **Real-time Updates**
+  - Instant calorie calculations
+  - Live meal history updates
+  - Smooth transitions and animations
+
+## Tech Stack
+
+- **Framework:** Next.js 15
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **State Management:** Zustand
+- **Form Handling:** React Hook Form
+- **Icons:** Lucide Icons
+- **Theme:** next-themes
+- **Notifications:** Sonner
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (v18 or higher)
+- npm or yarn
+- Git
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   ```bash
+   git clone https://github.com/namanphagiwala/meal-calorie-frontend-naman.git
+   cd calorie-counter-frontend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory and add:
+
+   ```env
+   NEXT_PUBLIC_API_URL=your_api_url_here
+   ```
+
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open your browser**
+   Visit `http://localhost:3000` to see the application.
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint
+- `npm test` - Run tests
+
+## Project Structure
+
+```
+src/
+├── app/                 # Next.js app directory
+│   ├── dashboard/      # Dashboard pages
+│   ├── login/         # Authentication pages
+│   └── register/      # Registration pages
+├── components/         # React components
+│   ├── ui/           # UI components
+│   └── ...           # Feature components
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions
+├── store/             # State management
+└── types/             # TypeScript types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Acknowledgments
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Lucide Icons](https://lucide.dev/)
